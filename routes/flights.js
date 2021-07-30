@@ -36,19 +36,11 @@ router.get(`/${API}/airports`, async (req, res) => {
 
 // Flight Offers search
 router.post(`/${API}/flight-offers`, async(req, res) => {
-  console.log('POST ROUTE')
-  departure = req.body.departure; 
-  arrival = req.body.arrival; 
-  locationDeparture = req.body.locationDeparture; 
-  locationArrival = req.body.locationArrival;
   const response = await amadeus.shopping.flightOffersSearch 
-    .get({ 
-      originLocationCode: locationDeparture, 
-      destinationLocationCode: locationArrival, 
-      departureDate: departure, 
-      adults: "1", 
-    }) 
+    .get(req.body) 
     .catch((err) => console.log(err)); 
+    console.log(response)
+    return res.status(201).json({response})
 });
 
 module.exports = router;
