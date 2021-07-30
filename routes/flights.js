@@ -16,7 +16,6 @@ const amadeus = new Amadeus({
 // Airports autocomplete routes
 router.get(`/${API}/airports`, async (req, res) => {
   const { page, subType, keyword } = req.query;
-  console.log('INSIDE API airports route!!!')
   // API call with params we requested from client app
 
   // Sending response for client
@@ -32,5 +31,27 @@ router.get(`/${API}/airports`, async (req, res) => {
     await res.json(err);
   }
 });
+
+
+// Flight Offers search
+// router.post(`/${API}/flight-offers`, async(req, res) => {
+//   try { response = await amadeus.client.post("/v1/shopping/flight-offers", {
+//     currencyCode: "USD",
+//     originDestinations: ,
+//     travelers: ,
+//     sources: ["GDS"],
+//     searchCriteria: {
+//       maxFlightOffers: 10,
+//       flightFilters: {
+//         cabin: ,
+//         originDestinationIds: [""]
+//       }
+//     }
+//   })
+//   }
+//   catch (err) {
+//     await res.json(err);
+//   }
+// }
 
 module.exports = router;
